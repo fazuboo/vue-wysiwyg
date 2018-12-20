@@ -42,8 +42,10 @@ import removeFormat from "./modules/removeFormat.js";
 
 import separator from "./modules/separator.js";
 
+import color from "./modules/color.vue";
+
 const modules = [
-    bold, italic, underline, separator,
+    color, bold, italic, underline, separator,
     alignLeft, alignCenter, alignRight, separator,
     headings, hyperlink, code,
     list_ordered, list_unordered, separator,
@@ -157,11 +159,18 @@ export default {
           }
         },
         exec (cmd, arg, sel){
+          if (cmd === 'color') {
+            this.colorEl(window.getSelection().focusNode.parentNode, arg)
+          } else {
             sel !== false && this.selection && this.restoreSelection(this.selection);
             document.execCommand(cmd, false, arg||"");
-            this.clearSelection();
+          }
+          this.clearSelection();
+          this.$nextTick(this.emit);
+        },
 
-            this.$nextTick(this.emit);
+        colorEl (el, color) {
+          el.setAttribute('style', `color:${color}`)
         },
 
         onDocumentClick (e) {
@@ -296,7 +305,7 @@ $svgSize = 16px
         left 0
         text-align left
         padding 8px 16px
-        background alpha(white, 0.95)
+        /*background alpha(white, 0.95)*/
         border 1px solid $offwhite
 
 

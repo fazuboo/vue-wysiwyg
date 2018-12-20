@@ -1,20 +1,21 @@
 <template lang="pug">
 div(@mousedown="onBtnClick")
-	a(:class="'vw-btn-'+module.title", v-html="module.icon")
+    a(:class="'vw-btn-'+module.title", v-html="module.icon")
 
-	.dashboard(
+    .dashboard(
 		v-show="showDashboard",
 		ref="dashboard"
 	)
-		component(
-      v-if="module.render",
-      v-once,
-      ref="moduleDashboard",
-      :is="module",
-      @exec="exec",
-      :uid="uid"
-      :options="options"
-    )
+
+        component(
+          v-if="module.render",
+          v-once,
+          ref="moduleDashboard",
+          :is="module",
+          @exec="exec",
+          :uid="uid"
+          :options="options"
+        )
 
 </template>
 <script>
@@ -44,9 +45,9 @@ export default {
 			this.showDashboard = true;
 		},
 
-    exec () {
-      this.$parent.exec.apply(null, arguments)
-    },
+        exec () {
+          this.$parent.exec.apply(null, arguments)
+        },
 
 		onBtnClick ($event) {
 			$event.preventDefault();
