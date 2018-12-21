@@ -257,7 +257,7 @@ $svgSize = 16px
     border-bottom 1px solid darken($offwhite, 7.5%)
     position relative
     display flex
-    height $buttonHeight
+    height auto
 
     a
         display inline-block
