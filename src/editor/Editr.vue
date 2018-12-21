@@ -300,7 +300,7 @@ $svgSize = 16px
 
     .dashboard
         width 100%
-        position absolute
+        position static
         top 32px
         left 0
         text-align left
